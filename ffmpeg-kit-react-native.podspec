@@ -16,14 +16,20 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/arthenica/ffmpeg-kit.git", :tag => "react.native.v#{s.version}" }
   s.platforms    = { :ios => '15.0' }
-  s.default_subspec   = 'full-gpl'
-
+ s.libraries        = ["z", "bz2", "c++", "iconv"]
   s.dependency "React-Core"
+  s.requires_arc     = true
+  s.ios.frameworks   = ["AudioToolbox", "AVFoundation", "CoreMedia", "VideoToolbox"]
 
-  s.subspec 'full-gpl' do |ss|
-      ss.source_files      = '**/FFmpegKitReactNativeModule.m',
-                             '**/FFmpegKitReactNativeModule.h'
-      ss.ios.deployment_target = '15.0'
-      ss.vendored_frameworks = Dir.glob('ffmpeg-kit-ios-full-gpl/*.xcframework')
-  end
+  s.source_files = ['**/FFmpegKitReactNativeModule.m','**/FFmpegKitReactNativeModule.h']
+    s.vendored_frameworks = [
+      "ffmpeg-kit-ios-full-gpl/ffmpegkit.xcframework",
+    "ffmpeg-kit-ios-full-gpl/libavcodec.xcframework",
+    "ffmpeg-kit-ios-full-gpl/libavdevice.xcframework",
+    "ffmpeg-kit-ios-full-gpl/libavfilter.xcframework",
+    "ffmpeg-kit-ios-full-gpl/libavformat.xcframework",
+    "ffmpeg-kit-ios-full-gpl/libavutil.xcframework",
+    "ffmpeg-kit-ios-full-gpl/libswresample.xcframework",
+    "ffmpeg-kit-ios-full-gpl/libswscale.xcframework"
+    ]
 end
