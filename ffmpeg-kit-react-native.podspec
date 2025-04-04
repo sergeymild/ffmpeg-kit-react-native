@@ -10,26 +10,25 @@ Pod::Spec.new do |s|
   s.license      = package["license"]
   s.authors      = package["author"]
 
-  s.platform          = :ios
+  s.platforms    = { :ios => min_ios_version_supported }
   s.requires_arc      = true
   s.static_framework  = true
 
   s.source       = { :git => "https://github.com/arthenica/ffmpeg-kit.git", :tag => "react.native.v#{s.version}" }
-  s.platforms    = { :ios => '15.0' }
- s.libraries        = ["z", "bz2", "c++", "iconv"]
-  s.dependency "React-Core"
-  s.requires_arc     = true
   s.ios.frameworks   = ["AudioToolbox", "AVFoundation", "CoreMedia", "VideoToolbox"]
+  s.libraries        = ["z", "bz2", "c++", "iconv"]
 
-  s.source_files = ['**/FFmpegKitReactNativeModule.m','**/FFmpegKitReactNativeModule.h']
-    s.vendored_frameworks = [
-      "ffmpeg-kit-ios-full-gpl/ffmpegkit.xcframework",
-    "ffmpeg-kit-ios-full-gpl/libavcodec.xcframework",
-    "ffmpeg-kit-ios-full-gpl/libavdevice.xcframework",
-    "ffmpeg-kit-ios-full-gpl/libavfilter.xcframework",
-    "ffmpeg-kit-ios-full-gpl/libavformat.xcframework",
-    "ffmpeg-kit-ios-full-gpl/libavutil.xcframework",
-    "ffmpeg-kit-ios-full-gpl/libswresample.xcframework",
-    "ffmpeg-kit-ios-full-gpl/libswscale.xcframework"
-    ]
+  s.source_files = "ios/**/*.{h,m,mm,cpp}"
+  s.vendored_frameworks = [
+    "frameworks/ffmpegkit.xcframework",
+    "frameworks/libavcodec.xcframework",
+    "frameworks/libavdevice.xcframework",
+    "frameworks/libavfilter.xcframework",
+    "frameworks/libavformat.xcframework",
+    "frameworks/libavutil.xcframework",
+    "frameworks/libswresample.xcframework",
+    "frameworks/libswscale.xcframework"
+  ]
+  install_modules_dependencies(s)
+
 end
