@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.requires_arc      = true
   s.static_framework  = true
 
-  s.source       = { :git => "https://github.com/sergeymild/ffmpeg-kit-react-native.git", :tag => package["version"] }
+  s.source       = { :git => "https://github.com/sergeymild/ffmpeg-kit-react-native.git", :tag => "6.0.8" }
   s.ios.frameworks   = ["AudioToolbox", "AVFoundation", "CoreMedia", "VideoToolbox"]
   s.libraries        = ["z", "bz2", "c++", "iconv"]
 
